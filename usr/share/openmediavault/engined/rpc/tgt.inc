@@ -103,6 +103,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         if (TRUE === $object->isNew()) {
             // Check uniqueness:
             $db->assertIsUnique($object, "uuid");
+            $db->assertIsUnique($object, "name");
             // naming rule : [ iqn.(year)-(month).(reverse of domain name):(any name you like) ]
             $hostname = gethostbyaddr(gethostbyname(gethostname()));
             $hn2 = implode('.',array_reverse(explode('.',$hostname)));
