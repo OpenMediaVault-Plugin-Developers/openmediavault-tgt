@@ -1,0 +1,54 @@
+[{
+	"type": "rpc",
+	"id": "rpc.tgt.setsettings",
+	"params": {
+		"type": "object",
+		"properties": {
+			"enable": {
+				"type": "boolean",
+				"required": true
+			},
+			"extraoptions": {
+				"type": "string",
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.tgt.settarget",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"enable": {
+			    	"type": "boolean",
+				"required": true
+			},
+			"name": {
+				"type": "string",
+				"required": false
+			},
+			"iqn": {
+				"type": "string",
+				"required": false
+			},
+			"backingstore": {
+				"type": "string",
+				"required": true
+			},
+			"initiatoraddress": {
+			    	"type": "string",
+				"required": true
+			},
+			"extraoptions": {
+			    	"type": "string",
+				"required": true
+			}
+		}
+	}
+}]

@@ -1,0 +1,15 @@
+Source: openmediavault-tgt
+Section: devel
+XB-Plugin-Section: network
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 9 )
+Standards-Version: 3.9.3
+
+Package: openmediavault-tgt
+Architecture: all
+Depends: tgt,
+         openmediavault (>= 5.1),
+         ${misc:Depends}
+Description: OpenMediaVault tgt plugin
+ Plugin to setup tgt iscsi targets.

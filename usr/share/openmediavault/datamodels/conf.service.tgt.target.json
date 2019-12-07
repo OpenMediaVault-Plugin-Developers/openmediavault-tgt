@@ -1,0 +1,36 @@
+{
+	"type": "config",
+	"id": "conf.service.tgt.target",
+	"title": "tgt target",
+	"queryinfo": {
+		"xpath": "/config/services/tgt/targets/target",
+		"iterable": true,
+		"idproperty": "uuid"
+	},
+	"properties": {
+		"uuid": {
+			"type": "string",
+			"format": "uuidv4"
+		},
+		"enable": {
+			"type": "boolean",
+			"default": false
+		},
+		"name": {
+			"type": "string"
+		},
+		"iqn": {
+			"type": "string"
+		},
+		"backingstore": {
+			"type": "string"
+		},
+		"initiatoraddress": {
+			"type": "string"
+		},
+		"extraoptions": {
+			"type": "string"
+		}
+	}
+}
+

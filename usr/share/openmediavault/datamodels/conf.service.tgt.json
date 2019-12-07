@@ -1,0 +1,55 @@
+{
+	"type": "config",
+	"id": "conf.service.tgt",
+	"title": "tgt",
+	"queryinfo": {
+		"xpath": "/config/services/tgt",
+		"iterable": false
+	},
+	"properties": {
+		"enable": {
+			"type": "boolean",
+			"default": false
+		},
+		"extraoptions": {
+			"type": "string",
+			"default": ""
+		},
+		"targets": {
+			"type": "object",
+			"properties": {
+				"target": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"uuid": {
+								"type": "string",
+								"format": "uuidv4"
+							},
+							"enable": {
+								"type": "boolean",
+								"default": false
+							},
+							"name": {
+								"type": "string"
+							},
+							"iqn": {
+								"type": "string"
+							},
+							"backingstore": {
+								"type": "string"
+							},
+							"initiatoraddress": {
+								"type": "string"
+							},
+							"extraoptions": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
