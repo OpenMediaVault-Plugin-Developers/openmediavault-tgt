@@ -62,6 +62,7 @@ start_tgt_service:
     - enable: True
     - watch:
       - file: configure_tgt
+      - file: configure_tgt_target_*
 
 {% else %}
 
