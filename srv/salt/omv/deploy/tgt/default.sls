@@ -21,6 +21,18 @@
 
 {% if config.enable | to_bool %}
 
+configure_tgt:
+  file.managed:
+    - name: "/etc/tgt/targets.conf"
+    - source:
+      - salt://{{ slspath }}/files/etc-tgt-targets_conf.j2
+    - template: jinja
+    - context:
+        config: {{ config | json }}
+    - user: root
+    - group: root
+    - mode: 644
+
 remove_target_conf_files:
   module.run:
     - file.find:
@@ -48,6 +60,8 @@ start_tgt_service:
   service.running:
     - name: tgt
     - enable: True
+    - watch:
+      - file: configure_tgt
 
 {% else %}
 
