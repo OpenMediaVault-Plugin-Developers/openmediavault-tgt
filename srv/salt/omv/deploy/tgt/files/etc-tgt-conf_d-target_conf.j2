@@ -1,6 +1,6 @@
 <target {{ target.iqn }}>
 backing-store {{ target.backingstore }}
-intiator-name {{ target.initiatoraddress }}
+initiator-name {{ target.initiatoraddress }}
 {%- if target.extraoptions | length > 0 %}
 {{ target.extraoptions }}
 {%- endif %}

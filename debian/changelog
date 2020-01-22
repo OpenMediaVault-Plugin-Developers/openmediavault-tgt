@@ -1,3 +1,9 @@
+openmediavault-tgt (5.0.3) stable; urgency=low
+
+  * Fix typo in config
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 22 Jan 2020 11:10:48 -0600
+
 openmediavault-tgt (5.0.2) stable; urgency=medium
 
   * Restart tgt when making target changes
