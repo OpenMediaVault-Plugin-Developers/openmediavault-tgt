@@ -1,6 +1,16 @@
 <target {{ target.iqn }}>
 backing-store {{ target.backingstore }}
-initiator-name {{ target.initiatoraddress }}
+{%- if target.initiatoraddress | length > 0 %}
+{%- for initiator in target.initiatoraddress.split(' ') %}
+{%- if initiator | length > 0 %}
+{%- if initiator | is_ip %}
+initiator-address {{ initiator }}
+{%- else %}
+initiator-name {{ initiator }}
+{%- endif %}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
 {%- if target.extraoptions | length > 0 %}
 {{ target.extraoptions }}
 {%- endif %}

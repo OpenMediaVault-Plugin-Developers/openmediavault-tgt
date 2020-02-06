@@ -1,7 +1,7 @@
 /**
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
- * @copyright Copyright (c) 2019 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2019-2020 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,15 @@ Ext.define("OMV.module.admin.service.tgt.Target", {
             xtype: "textfield",
             name: "initiatoraddress",
             fieldLabel: _("Initiator Address"),
-            allowBlank: false
+            allowBlank: true,
+            plugins: [{
+                ptype: "fieldinfo",
+                text: _("Multiple addresses can be entered with a space between each entry.") +
+                        "<br />" +
+                      _("Hostname or IP address can be used.") +
+                        "<br />" +
+                      _("Field can be left blank to allow any to access.")
+            }]
         },{
             xtype: "textarea",
             name: "extraoptions",
@@ -119,7 +127,12 @@ Ext.define("OMV.module.admin.service.tgt.Targets", {
         text: _("Initiator Address"),
         sortable: false,
         dataIndex: "initiatoraddress",
-        stateId: "initiatoraddress"
+        stateId: "initiatoraddress",
+        renderer: function(value) {
+            var newval = value.replace(/ /g, "<br />");
+            var template = Ext.create('Ext.XTemplate', '<tpl for=".">{.}<br/></tpl>');
+            return template.apply(newval);
+        }
     }],
 
     initComponent: function() {

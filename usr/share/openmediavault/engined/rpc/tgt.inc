@@ -95,6 +95,10 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, "rpc.tgt.settarget");
+        // Replace comma or multiple spaces with one space
+        $params["initiatoraddress"] = trim($params["initiatoraddress"]);
+        $params["initiatoraddress"] = str_replace(",", " ", $params["initiatoraddress"]);
+        $params["initiatoraddress"] = preg_replace("/\s+/", " ", $params["initiatoraddress"]);
         // Prepare the configuration object.
         $object = new \OMV\Config\ConfigObject("conf.service.tgt.target");
         $object->setAssoc($params);
