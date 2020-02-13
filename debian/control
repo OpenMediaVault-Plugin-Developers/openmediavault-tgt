@@ -9,7 +9,8 @@ Standards-Version: 3.9.3
 Package: openmediavault-tgt
 Architecture: all
 Depends: tgt,
-         openmediavault (>= 5.1),
+         omvextras-common,
+         openmediavault (>= 5.3),
          ${misc:Depends}
 Description: OpenMediaVault tgt plugin
  Plugin to setup tgt iscsi targets.
