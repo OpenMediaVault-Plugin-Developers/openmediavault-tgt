@@ -1,3 +1,9 @@
+openmediavault-tgt (5.1.0) stable; urgency=low
+
+  * Add tab to create and manage images
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 13 Feb 2020 12:25:01 -0600
+
 openmediavault-tgt (5.0.5) stable; urgency=low
 
   * Use hostname from command line to get FQDN

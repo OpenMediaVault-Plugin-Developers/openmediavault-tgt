@@ -51,4 +51,42 @@
 			}
 		}
 	}
+},{
+	"type": "rpc",
+	"id": "rpc.tgt.setimage",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"path": {
+				"type": "string",
+				"required": true
+			},
+			"imagesize": {
+				"type": "integer",
+				"required": false
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.tgt.growimage",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"amount": {
+				"type": "string",
+				"required": true
+			}
+		}
+	}
 }]

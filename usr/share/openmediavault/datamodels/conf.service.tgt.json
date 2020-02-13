@@ -50,6 +50,26 @@
 					}
 				}
 			}
+		},
+		"images": {
+			"type": "object",
+			"properties": {
+				"image": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"uuid": {
+								"type": "string",
+								"format": "uuidv4"
+							},
+							"path": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }

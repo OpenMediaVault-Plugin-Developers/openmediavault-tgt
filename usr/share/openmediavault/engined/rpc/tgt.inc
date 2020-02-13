@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * Copyright (C) 2019-2020 OpenMediaVault Plugin Developers
@@ -28,10 +28,17 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
     {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
+
         $this->registerMethod('getTargetList');
         $this->registerMethod('setTarget');
         $this->registerMethod('getTarget');
         $this->registerMethod('deleteTarget');
+
+        $this->registerMethod('getImageList');
+        $this->registerMethod('setImage');
+        $this->registerMethod('getImage');
+        $this->registerMethod('deleteImage');
+        $this->registerMethod('growImage');
     }
 
     public function getSettings($params, $context)
@@ -64,8 +71,8 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         return $object->getAssoc();
     }
 
-     public function getTargetList($params, $context)
-     {
+    public function getTargetList($params, $context)
+    {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Validate the parameters of the RPC service method.
@@ -131,5 +138,121 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $db->delete($object);
         // Return the deleted configuration object.
         return $object->getAssoc();
+    }
+
+    public function getImageList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.common.getlist');
+        // Get the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $objects = $db->get('conf.service.tgt.image');
+        // Add additional share informations.
+        $objectsAssoc = [];
+        foreach ($objects as $objectk => &$objectv) {
+            // Add the new property 'imagesize'.
+            $objectv->add('imagesize', 'integer', -1);
+            if (file_exists($objectv->get('path'))) {
+                // Update the 'imagesize' property.
+                $objectv->set('imagesize', filesize($objectv->get('path')));
+            }
+            $objectsAssoc[] = $objectv->getAssoc();
+        }
+        // Filter the result.
+        return $this->applyFilter($objectsAssoc,$params['start'],$params['limit'],
+            $params['sortfield'],$params['sortdir']);
+    }
+
+    public function getImage($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.common.objectuuid');
+        // Get the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        return $db->getAssoc('conf.service.tgt.image', $params['uuid']);
+    }
+
+    public function setImage($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.tgt.setimage');
+        // Prepare the configuration object.
+        $object = new \OMV\Config\ConfigObject('conf.service.tgt.image');
+        $object->set('uuid',$params['uuid']);
+        $object->set('path',$params['path']);
+        // Set the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        if (TRUE === $object->isNew()) {
+            // Check uniqueness:
+            $db->assertIsUnique($object, 'path');
+        }
+        if (!file_exists($object->get('path'))) {
+            $cmdArgs = [];
+            $cmdArgs[] = 'if=/dev/zero';
+            $cmdArgs[] = sprintf('of=%s', $object->get('path'));
+            $cmdArgs[] = 'bs=1';
+            $cmdArgs[] = sprintf('seek=%dG', $params['imagesize']);
+            $cmdArgs[] = 'count=0';
+            $cmd = new \OMV\System\Process('dd', $cmdArgs);
+            $cmd->execute($output);
+        } else {
+            throw new \OMV\Exception(
+                "Image already exists - '%s'.", $object->get('path')
+            );
+        }
+        $db->set($object);
+        // Return the configuration object.
+        return $object->getAssoc();
+    }
+
+    public function deleteImage($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.common.objectuuid');
+        // Delete the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $object = $db->get('conf.service.tgt.image', $params['uuid']);
+        $db->delete($object);
+        // Delete the image file
+        if (file_exists($object->get('path'))) {
+            unlink($object->get('path'));
+        }
+        // Return the deleted configuration object.
+        return $object->getAssoc();
+    }
+
+    public function growImage($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.tgt.growimage');
+        // Get the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $object = $db->get("conf.service.tgt.image", $params['uuid']);
+        if (file_exists($object->get('path'))) {
+            $cmdArgs = [];
+            $cmdArgs[] = 'if=/dev/zero';
+            $cmdArgs[] = sprintf('of=%s', $object->get('path'));
+            $cmdArgs[] = 'bs=1';
+            $cmdArgs[] = sprintf('seek=%dG', $params['amount']);
+            $cmdArgs[] = 'count=0';
+            $cmd = new \OMV\System\Process('dd', $cmdArgs);
+            $cmd->execute($output);
+            file_put_contents("/tmp/test2", $output);
+            file_put_contents("/tmp/test2", $cmd->getCommandLine(), FILE_APPEND);
+        } else {
+            throw new \OMV\Exception(
+                "Image does not exist - '%s'.", $object->get('path')
+            );
+        }
     }
 }
