@@ -25,7 +25,7 @@ configure_tgt:
   file.managed:
     - name: "/etc/tgt/targets.conf"
     - source:
-      - salt://{{ slspath }}/files/etc-tgt-targets_conf.j2
+      - salt://{{ tpldir }}/files/etc-tgt-targets_conf.j2
     - template: jinja
     - context:
         config: {{ config | json }}
@@ -46,7 +46,7 @@ configure_tgt_target_{{ target.uuid }}:
   file.managed:
     - name: "{{ scripts_dir | path_join(script_prefix ~ target.uuid) }}.conf"
     - source:
-      - salt://{{ slspath }}/files/etc-tgt-conf_d-target_conf.j2
+      - salt://{{ tpldir }}/files/etc-tgt-conf_d-target_conf.j2
     - context:
         target: {{ target | json }}
     - template: jinja
