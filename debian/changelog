@@ -1,3 +1,9 @@
+openmediavault-tgt (5.1.2) stable; urgency=low
+
+  * Lowercase iqn
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 06 Mar 2020 13:31:56 -0600
+
 openmediavault-tgt (5.1.1) stable; urgency=low
 
   * Replace 'slspath' with 'tpldir' for saltstack 3000
