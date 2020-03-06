@@ -1,4 +1,4 @@
-<target {{ target.iqn }}>
+<target {{ target.iqn | lower }}>
 backing-store {{ target.backingstore }}
 {%- if target.initiatoraddress | length > 0 %}
 {%- for initiator in target.initiatoraddress.split(' ') %}
