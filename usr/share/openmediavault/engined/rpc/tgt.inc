@@ -118,7 +118,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
             // naming rule : [ iqn.(year)-(month).(reverse of domain name):(any name you like) ]
             $hostname = exec('hostname --fqdn');
             $hn2 = implode('.',array_reverse(explode('.',$hostname)));
-            $iqn = sprintf('iqn.%d-%d.%s:%s',date('Y'),date('m'),$hn2,strtolower($params['name']));
+            $iqn = sprintf('iqn.%s-%s.%s:%s',date('Y'),date('m'),$hn2,strtolower($params['name']));
             $object->set('iqn', $iqn);
         }
         $db->set($object);
