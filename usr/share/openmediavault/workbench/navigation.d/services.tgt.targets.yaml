@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "services.tgt.targets"
+  text: _("Targets")
+  position: 20
+  icon: mdi:target-variant
+  url: "/services/tgt/targets"

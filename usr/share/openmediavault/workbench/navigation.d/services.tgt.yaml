@@ -1,0 +1,7 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "services.tgt"
+  text: _("tgt")
+  icon: "mdi:server-network"
+  url: "/services/tgt"

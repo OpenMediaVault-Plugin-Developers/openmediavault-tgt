@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/tgt/targets/edit/:uuid"
+  title: _("Edit")
+  editing: true
+  notificationTitle: _("Edit target.")
+  component: omv-services-tgt-target-form-page

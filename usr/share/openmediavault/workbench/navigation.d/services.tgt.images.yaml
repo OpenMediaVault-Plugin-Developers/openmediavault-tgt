@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "services.tgt.images"
+  text: _("Images")
+  position: 30
+  icon: mdi:harddisk
+  url: "/services/tgt/images"

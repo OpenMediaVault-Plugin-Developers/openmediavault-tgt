@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/tgt/images"
+  title: _("Images")
+  component: omv-services-tgt-images-datatable-page

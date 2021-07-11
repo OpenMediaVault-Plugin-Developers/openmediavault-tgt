@@ -7,9 +7,14 @@ set -e
 
 case "$1" in
     configure)
+        if [ -z "$2" ]; then
+            echo "Updating service units ..."
+            deb-systemd-invoke stop tgt || :
+            deb-systemd-helper disable tgt || :
+        fi
+
         # Activate package triggers.
-        dpkg-trigger update-fixperms
-        dpkg-trigger update-locale
+        dpkg-trigger update-workbench
 
         # Initialize and migrate configuration database.
         echo "Updating configuration database ..."
@@ -17,8 +22,6 @@ case "$1" in
         if [ -n "$2" ]; then
             omv-confdbadm migrate "conf.service.tgt" "${2}"
         fi
-
-        #omv-salt deploy run tgt
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

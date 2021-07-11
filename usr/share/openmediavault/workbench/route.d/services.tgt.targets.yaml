@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/tgt/targets"
+  title: _("Targets")
+  component: omv-services-tgt-targets-datatable-page

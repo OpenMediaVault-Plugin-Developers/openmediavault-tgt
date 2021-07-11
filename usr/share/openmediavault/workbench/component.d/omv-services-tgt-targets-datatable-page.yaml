@@ -1,0 +1,55 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-tgt-targets-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    hasSearchField: true
+    stateId: ef7741be-e264-11eb-83f1-6306a82d07ae
+    sorters:
+      - dir: asc
+        prop: name
+    store:
+      proxy:
+        service: Tgt
+        get:
+          method: getTargetList
+    columns:
+      - name: _("Enabled")
+        prop: enable
+        sortable: true
+        cellTemplateName: checkIcon
+      - label: _("Name")
+        prop: name
+        flexGrow: 1
+        sortable: true
+      - label: _("IQN")
+        prop: iqn
+        flexGrow: 1
+        sortable: true
+      - label: _("Backing store")
+        prop: backingstore
+        flexGrow: 1
+        sortable: false
+      - label: _("Initiator address")
+        prop: initiatoraddress
+        flexGrow: 1
+        sortable: false
+    actions:
+      - template: create
+        execute:
+          type: url
+          url: "/services/tgt/targets/create"
+      - template: edit
+        execute:
+          type: url
+          url: "/services/tgt/targets/edit/{{ _selected[0].uuid }}"
+      - template: delete
+        execute:
+          type: request
+          request:
+            service: Tgt
+            method: deleteTarget
+            params:
+              uuid: "{{ _selected[0].uuid }}"

@@ -12,13 +12,7 @@ remove_action() {
 case "$1" in
     purge)
         remove_action
-
-        SERVICE_XPATH_NAME="tgt"
-        SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
-
-        if omv_config_exists "${SERVICE_XPATH}"; then
-           omv_config_delete "${SERVICE_XPATH}"
-        fi
+        omv_config_delete "/config/services/tgt"
     ;;
 
     remove)

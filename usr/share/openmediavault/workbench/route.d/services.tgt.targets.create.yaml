@@ -1,0 +1,7 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/tgt/targets/create"
+  title: _("Create")
+  notificationTitle: _("Created target.")
+  component: omv-services-tgt-target-form-page

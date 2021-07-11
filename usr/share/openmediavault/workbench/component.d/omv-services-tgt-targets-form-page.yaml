@@ -1,0 +1,50 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-tgt-target-form-page
+  type: formPage
+  config:
+    request:
+      service: Tgt
+      get:
+        method: getTarget
+        params:
+          uuid: "{{ _routeParams.uuid }}"
+      post:
+        method: setTarget
+    fields:
+      - type: confObjUuid
+      - type: checkbox
+        name: enable
+        label: _("Enable")
+        value: false
+      - type: textInput
+        name: name
+        label: _("Name")
+        value: ""
+      - type: hidden
+        name: iqn
+      - type: textInput
+        name: backingstore
+        label: _("Backing store")
+        value: ""
+      - type: textInput
+        name: initiatoraddress
+        label: _("Initiator address")
+        value: ""
+        hint: _("Multiple addresses can be entered with a space between each entry.<br />Hostname or IP address can be used.<br />Field can be left blank to allow any to access.")
+      - type: textarea
+        name: extraoptions
+        label: _("Extra options")
+        value: ""
+        rows: 3
+    buttons:
+      - template: submit
+        execute:
+          type: url
+          url: "/services/tgt/targets"
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/tgt/targets"
+

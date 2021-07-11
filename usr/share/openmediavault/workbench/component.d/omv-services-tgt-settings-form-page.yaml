@@ -1,0 +1,28 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-tgt-settings-form-page
+  type: formPage
+  config:
+    request:
+      service: Tgt
+      get:
+        method: getSettings
+      post:
+        method: setSettings
+    fields:
+      - type: checkbox
+        name: enable
+        label: _("Enable")
+        value: false
+      - type: textarea
+        name: extraoptions
+        label: _("Extra options")
+        value: ""
+        rows: 3
+    buttons:
+      - template: submit
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/tgt"

@@ -1,0 +1,70 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-tgt-images-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    hasSearchField: true
+    stateId: 128fae2e-e261-11eb-b135-97fc3db3cb03
+    sorters:
+      - dir: asc
+        prop: path
+    store:
+      proxy:
+        service: Tgt
+        get:
+          method: getImageList
+    columns:
+      - name: _("Path")
+        prop: path
+        flexGrow: 1
+        sortable: true
+      - name: _("Image size")
+        prop: "imagesize"
+        flexGrow: 1
+        sortable: true
+        cellTemplateName: 'template'
+        cellTemplateConfig: '{{ imagesize | tobytes | binaryunit | notavailable("-") }}'
+    actions:
+      - template: create
+        execute:
+          type: url
+          url: "/services/tgt/images/create"
+      - template: delete
+        execute:
+          type: request
+          request:
+            service: Tgt
+            method: deleteImage
+            params:
+              uuid: "{{ _selected[0].uuid }}"
+      - type: iconButton
+        icon: expand
+        tooltip: _("Grow")
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        execute:
+          type: formDialog
+          formDialog:
+            title: _("Enter new size in gigabytes.")
+            fields:
+              - type: textInput
+                name: path
+                label: _('Path')
+                value: "{{ _selected[0].path }}"
+                readonly: true
+              - type: numberInput
+                name: amount
+                label: _('Size')
+                value: "{{ _selected[0].imagesize }}"
+            buttons:
+              submit:
+                text: _('Grow image')
+                execute:
+                  type: request
+                  request:
+                    service: Tgt
+                    method: growImage
+            successUrl: /services/tgt/images

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2019-2020 OpenMediaVault Plugin Developers
+ * Copyright (C) 2019-2021 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -118,7 +118,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
             // naming rule : [ iqn.(year)-(month).(reverse of domain name):(any name you like) ]
             $hostname = exec('hostname --fqdn');
             $hn2 = implode('.',array_reverse(explode('.',$hostname)));
-            $iqn = sprintf('iqn.%d-%d.%s:%s',date('Y'),date('m'),$hn2,strtolower($params['name']));
+            $iqn = sprintf('iqn.%s-%s.%s:%s',date('Y'),date('m'),$hn2,strtolower($params['name']));
             $object->set('iqn', $iqn);
         }
         $db->set($object);
@@ -149,7 +149,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         // Get the configuration object.
         $db = \OMV\Config\Database::getInstance();
         $objects = $db->get('conf.service.tgt.image');
-        // Add additional share informations.
+        // Add additional image information
         $objectsAssoc = [];
         foreach ($objects as $objectk => &$objectv) {
             // Add the new property 'imagesize'.

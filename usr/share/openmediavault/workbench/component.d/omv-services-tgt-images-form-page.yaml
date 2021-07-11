@@ -1,0 +1,46 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-tgt-images-form-page
+  type: formPage
+  config:
+    request:
+      service: Tgt
+      get:
+        method: getImage
+        params:
+          uuid: "{{ _routeParams.uuid }}"
+      post:
+        method: setImage
+    fields:
+      - type: confObjUuid
+      - type: textInput
+        name: gitname
+        label: _("Name")
+      - type: hidden
+        name: uuid
+      - type: hidden
+        name: rootfsref
+        value: "79684322-3eac-11ea-a974-63a080abab18"
+        submitValue: false
+      - type: folderBrowser
+        name: path
+        label: _("Path")
+        value: ''
+        dirType: mntent
+        dirRefIdField: rootfsref
+      - type: numberInput
+        name: amount
+        label: _("New size")
+        value: '{{ imagesize | tobytes | binaryunit | notavailable("1") }}'
+        hint: _("Image size in gigabytes")
+    buttons:
+      - template: submit
+        execute:
+          type: url
+          url: "/services/tgt/images"
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/tgt/images"
+
