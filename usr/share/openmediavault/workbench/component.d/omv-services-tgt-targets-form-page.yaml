@@ -22,8 +22,6 @@ data:
         name: name
         label: _("Name")
         value: ""
-      - type: hidden
-        name: iqn
       - type: textInput
         name: backingstore
         label: _("Backing store")

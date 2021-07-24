@@ -14,9 +14,6 @@ data:
         method: setImage
     fields:
       - type: confObjUuid
-      - type: textInput
-        name: gitname
-        label: _("Name")
       - type: hidden
         name: uuid
       - type: hidden

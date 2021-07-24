@@ -79,10 +79,16 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodParams($params, 'rpc.common.getlist');
         // Get the configuration object.
         $db = \OMV\Config\Database::getInstance();
-        $objects = $db->getAssoc('conf.service.tgt.target');
+        $objects = $db->get('conf.service.tgt.target');
+        // Add additional informations.
+        $objectsAssoc = [];
+        foreach ($objects as $objectk => &$objectv) {
+            $objectv->add('initiators', 'string', str_replace(' ', '<br/>', $objectv->get('initiatoraddress')));
+            $objectsAssoc[] = $objectv->getAssoc();
+        }
         // Filter the result.
-        return $this->applyFilter($objects,$params['start'],$params['limit'],
-            $params['sortfield'],$params['sortdir']);
+        return $this->applyFilter($objectsAssoc, $params['start'], $params['limit'],
+            $params['sortfield'], $params['sortdir']);
     }
 
     public function getTarget($params, $context)

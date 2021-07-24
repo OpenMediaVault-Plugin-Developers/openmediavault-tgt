@@ -33,7 +33,7 @@ data:
         flexGrow: 1
         sortable: false
       - label: _("Initiator address")
-        prop: initiatoraddress
+        prop: initiators
         flexGrow: 1
         sortable: false
     actions:
