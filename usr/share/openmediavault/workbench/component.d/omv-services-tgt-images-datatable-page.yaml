@@ -24,8 +24,7 @@ data:
         prop: "imagesize"
         flexGrow: 1
         sortable: true
-        cellTemplateName: 'template'
-        cellTemplateConfig: '{{ imagesize | tobytes | binaryunit | notavailable("-") }}'
+        cellTemplateName: binaryUnit
     actions:
       - template: create
         execute:
@@ -50,6 +49,9 @@ data:
           formDialog:
             title: _("Enter new size in gigabytes.")
             fields:
+              - type: hidden
+                name: uuid
+                value: "{{ _selected[0].uuid }}"
               - type: textInput
                 name: path
                 label: _('Path')
@@ -58,7 +60,12 @@ data:
               - type: numberInput
                 name: amount
                 label: _('Size')
-                value: "{{ _selected[0].imagesize }}"
+                value: "{{ _selected[0].imagesize / 1024 / 1024 / 1024 }}"
+                validators:
+                  min: 1
+                  max: 99999
+                  patteryType: integer
+                  required: true
             buttons:
               submit:
                 text: _('Grow image')

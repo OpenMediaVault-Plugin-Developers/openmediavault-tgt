@@ -84,7 +84,7 @@
 				"required": true
 			},
 			"amount": {
-				"type": "string",
+				"type": "integer",
 				"required": true
 			}
 		}

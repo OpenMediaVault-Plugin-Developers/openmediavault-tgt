@@ -6,16 +6,10 @@ data:
   config:
     request:
       service: Tgt
-      get:
-        method: getImage
-        params:
-          uuid: "{{ _routeParams.uuid }}"
       post:
         method: setImage
     fields:
       - type: confObjUuid
-      - type: hidden
-        name: uuid
       - type: hidden
         name: rootfsref
         value: "79684322-3eac-11ea-a974-63a080abab18"
@@ -27,10 +21,15 @@ data:
         dirType: mntent
         dirRefIdField: rootfsref
       - type: numberInput
-        name: amount
+        name: imagesize
         label: _("New size")
-        value: '{{ imagesize | tobytes | binaryunit | notavailable("1") }}'
+        value: '{{ imagesize | tobytes | binaryunit | notavailable("-") }}'
         hint: _("Image size in gigabytes")
+        validators:
+          min: 1
+          max: 99999
+          patteryType: integer
+          required: true
     buttons:
       - template: submit
         execute:

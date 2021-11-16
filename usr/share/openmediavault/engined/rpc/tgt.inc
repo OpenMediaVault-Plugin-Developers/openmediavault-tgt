@@ -188,10 +188,11 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, 'rpc.tgt.setimage');
+        $imagesize = $params['imagesize'];
+        unset($params['imagesize']);
         // Prepare the configuration object.
         $object = new \OMV\Config\ConfigObject('conf.service.tgt.image');
-        $object->set('uuid',$params['uuid']);
-        $object->set('path',$params['path']);
+        $object->setAssoc($params);
         // Set the configuration object.
         $db = \OMV\Config\Database::getInstance();
         if (TRUE === $object->isNew()) {
@@ -203,7 +204,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
             $cmdArgs[] = 'if=/dev/zero';
             $cmdArgs[] = sprintf('of=%s', $object->get('path'));
             $cmdArgs[] = 'bs=1';
-            $cmdArgs[] = sprintf('seek=%dG', $params['imagesize']);
+            $cmdArgs[] = sprintf('seek=%dG', $imagesize);
             $cmdArgs[] = 'count=0';
             $cmd = new \OMV\System\Process('dd', $cmdArgs);
             $cmd->execute($output);
