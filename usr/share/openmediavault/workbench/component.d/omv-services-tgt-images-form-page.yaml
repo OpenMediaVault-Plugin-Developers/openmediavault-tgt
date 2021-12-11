@@ -22,8 +22,8 @@ data:
         dirRefIdField: rootfsref
       - type: numberInput
         name: imagesize
-        label: _("New size")
-        value: '{{ imagesize | tobytes | binaryunit | notavailable("-") }}'
+        label: _("Size")
+        value: 1
         hint: _("Image size in gigabytes")
         validators:
           min: 1
@@ -39,4 +39,3 @@ data:
         execute:
           type: url
           url: "/services/tgt/images"
-

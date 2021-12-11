@@ -1,8 +1,0 @@
-version: "1.0"
-type: route
-data:
-  url: "/services/tgt/images/edit/:uuid"
-  title: _("Edit")
-  editing: true
-  notificationTitle: _("Edit image.")
-  component: omv-services-tgt-images-form-page

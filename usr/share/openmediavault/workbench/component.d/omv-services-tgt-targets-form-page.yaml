@@ -45,4 +45,3 @@ data:
         execute:
           type: url
           url: "/services/tgt/targets"
-

@@ -10,6 +10,7 @@ Package: openmediavault-tgt
 Architecture: all
 Depends: tgt,
          openmediavault (>= 6.0),
+         openmediavault-sharerootfs,
          ${misc:Depends}
 Description: OpenMediaVault tgt plugin
  Plugin to setup tgt iscsi targets.

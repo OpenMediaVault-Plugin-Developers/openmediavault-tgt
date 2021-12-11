@@ -18,23 +18,24 @@ data:
     columns:
       - name: _("Enabled")
         prop: enable
+        flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
       - label: _("Name")
         prop: name
-        flexGrow: 1
+        flexGrow: 2
         sortable: true
       - label: _("IQN")
         prop: iqn
-        flexGrow: 1
+        flexGrow: 3
         sortable: true
       - label: _("Backing store")
         prop: backingstore
-        flexGrow: 1
+        flexGrow: 3
         sortable: false
       - label: _("Initiator address")
         prop: initiators
-        flexGrow: 1
+        flexGrow: 2
         sortable: false
     actions:
       - template: create
