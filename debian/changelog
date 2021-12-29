@@ -1,3 +1,10 @@
+openmediavault-tgt (6.0.3) stable; urgency=low
+
+  * Fix iqn bug - issue #9
+  * Fix image size display on 32 bit platforms - fix issue #10
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 29 Dec 2021 09:43:33 -0600
+
 openmediavault-tgt (6.0.2) stable; urgency=low
 
   * Add sharerootfs dependency
