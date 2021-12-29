@@ -165,10 +165,20 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $objectsAssoc = [];
         foreach ($objects as $objectk => &$objectv) {
             // Add the new property 'imagesize'.
-            $objectv->add('imagesize', 'integer', -1);
-            if (file_exists($objectv->get('path'))) {
+            $objectv->add('imagesize', 'string', '-1');
+            $path = $objectv->get('path');
+            if (file_exists($path)) {
                 // Update the 'imagesize' property.
-                $objectv->set('imagesize', filesize($objectv->get('path')));
+                $imagesize = '-1';
+                if (PHP_INT_SIZE == 8) {
+                    $imagesize = strval(filesize($path));
+                } else {
+                    $output = [];
+                    $cmd = new \OMV\System\Process('stat', '-c %s', escapeshellarg($path));
+                    $cmd->execute($output);
+                    $imagesize = trim($output[0]);
+                }
+                $objectv->set('imagesize', $imagesize);
             }
             $objectsAssoc[] = $objectv->getAssoc();
         }
