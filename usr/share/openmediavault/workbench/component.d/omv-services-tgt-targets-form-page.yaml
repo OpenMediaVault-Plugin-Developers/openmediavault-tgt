@@ -36,6 +36,9 @@ data:
         label: _("Extra options")
         value: ""
         rows: 3
+      - type: hidden
+        name: iqn
+        value: ""
     buttons:
       - template: submit
         execute:

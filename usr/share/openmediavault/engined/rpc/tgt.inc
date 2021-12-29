@@ -122,10 +122,16 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
             $db->assertIsUnique($object, 'uuid');
             $db->assertIsUnique($object, 'name');
             // naming rule : [ iqn.(year)-(month).(reverse of domain name):(any name you like) ]
-            $hostname = exec('hostname --fqdn');
-            $hn2 = implode('.',array_reverse(explode('.',$hostname)));
-            $iqn = sprintf('iqn.%s-%s.%s:%s',date('Y'),date('m'),$hn2,strtolower($params['name']));
+            $output = [];
+            $cmd = new \OMV\System\Process('hostname', '--fqdn');
+            $cmd->execute($output);
+            $hostname = $output[0];
+            $hn2 = implode('.', array_reverse(explode('.', $hostname)));
+            $iqn = sprintf('iqn.%s-%s.%s:%s',date('Y'),date('m'), $hn2, strtolower($params['name']));
             $object->set('iqn', $iqn);
+        }
+        if (empty($object->get('iqn'))) {
+            throw new \OMV\Exception(gettext("iqn not set"));
         }
         $db->set($object);
         // Return the configuration object.
