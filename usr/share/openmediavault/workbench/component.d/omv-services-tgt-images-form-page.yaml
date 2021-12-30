@@ -28,7 +28,7 @@ data:
         validators:
           min: 1
           max: 99999
-          patteryType: integer
+          patternType: integer
           required: true
     buttons:
       - template: submit
