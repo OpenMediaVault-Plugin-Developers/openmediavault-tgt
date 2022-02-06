@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2019-2021 OpenMediaVault Plugin Developers
+ * Copyright (C) 2019-2022 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -218,7 +218,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         if (!file_exists($object->get('path'))) {
             $cmdArgs = [];
             $cmdArgs[] = 'if=/dev/zero';
-            $cmdArgs[] = sprintf('of=%s', $object->get('path'));
+            $cmdArgs[] = sprintf('of="%s"', $object->get('path'));
             $cmdArgs[] = 'bs=1';
             $cmdArgs[] = sprintf('seek=%dG', $imagesize);
             $cmdArgs[] = 'count=0';
@@ -264,7 +264,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         if (file_exists($object->get('path'))) {
             $cmdArgs = [];
             $cmdArgs[] = 'if=/dev/zero';
-            $cmdArgs[] = sprintf('of=%s', $object->get('path'));
+            $cmdArgs[] = sprintf('of="%s"', $object->get('path'));
             $cmdArgs[] = 'bs=1';
             $cmdArgs[] = sprintf('seek=%dG', $params['amount']);
             $cmdArgs[] = 'count=0';

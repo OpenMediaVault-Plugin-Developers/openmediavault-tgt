@@ -1,3 +1,9 @@
+openmediavault-tgt (6.0.4) stable; urgency=low
+
+  * Allow paths with spaces
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 06 Feb 2022 09:25:42 -0600
+
 openmediavault-tgt (6.0.3) stable; urgency=low
 
   * Fix iqn bug - issue #9
