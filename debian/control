@@ -3,13 +3,13 @@ Section: devel
 XB-Plugin-Section: network
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 12 )
-Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 13)
+Standards-Version: 4.3.0
 
 Package: openmediavault-tgt
 Architecture: all
 Depends: tgt,
-         openmediavault (>= 6.0),
+         openmediavault (>= 7),
          openmediavault-sharerootfs,
          ${misc:Depends}
 Description: OpenMediaVault tgt plugin
