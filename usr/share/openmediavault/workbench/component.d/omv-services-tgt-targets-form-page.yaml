@@ -22,6 +22,13 @@ data:
         name: name
         label: _("Name")
         value: ""
+        validators:
+          required: true
+          patternType: wordChars
+        validators:
+          pattern:
+            pattern: '^[a-z0-9\-\.]+$'
+            errorData: _("Only lowercase alphanumeric (a-z), dash (-), and dot (.) allowed!")
       - type: textInput
         name: backingstore
         label: _("Backing store")

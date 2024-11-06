@@ -112,6 +112,12 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $params['initiatoraddress'] = trim($params['initiatoraddress']);
         $params['initiatoraddress'] = str_replace(',', ' ', $params['initiatoraddress']);
         $params['initiatoraddress'] = preg_replace('/\s+/', ' ', $params['initiatoraddress']);
+        // make sure delimiter is comma, unique the list, and trim each entry
+        $stores = str_replace([';',':'], ',', $params['backingstore']);
+        $paths = explode(',', $stores);
+        $pathsu = array_unique($paths);
+        $pathst = array_map('trim', $pathsu);
+        $params['backingstore'] = implode(',', $pathst);
         // Prepare the configuration object.
         $object = new \OMV\Config\ConfigObject('conf.service.tgt.target');
         $object->setAssoc($params);
