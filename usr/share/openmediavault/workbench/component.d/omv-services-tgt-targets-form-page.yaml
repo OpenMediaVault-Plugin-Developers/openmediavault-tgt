@@ -33,6 +33,7 @@ data:
         name: backingstore
         label: _("Backing store")
         value: ""
+        hint: _("Multiple backing stores can be entered with a comma between each entry.")
       - type: textInput
         name: initiatoraddress
         label: _("Initiator address")
