@@ -1,5 +1,7 @@
 <target {{ target.iqn | lower }}>
-backing-store {{ target.backingstore }}
+{%- for backingstore in target.backingstore.split(' ') %}
+backing-store {{ backingstore }}
+{%- endfor %}
 {%- if target.initiatoraddress | length > 0 %}
 {%- for initiator in target.initiatoraddress.split(' ') %}
 {%- if initiator | length > 0 %}
