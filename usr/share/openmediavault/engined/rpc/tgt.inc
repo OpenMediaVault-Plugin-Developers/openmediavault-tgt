@@ -84,6 +84,7 @@ class OMVRpcServiceTgt extends \OMV\Rpc\ServiceAbstract
         $objectsAssoc = [];
         foreach ($objects as $objectk => &$objectv) {
             $objectv->add('initiators', 'string', str_replace(' ', '<br/>', $objectv->get('initiatoraddress')));
+            $objectv->add('backingstores', 'string', str_replace(',', '<br/>', $objectv->get('backingstore')));
             $objectsAssoc[] = $objectv->getAssoc();
         }
         // Filter the result.

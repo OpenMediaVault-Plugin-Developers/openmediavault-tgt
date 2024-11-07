@@ -30,7 +30,7 @@ data:
         flexGrow: 3
         sortable: true
       - label: _("Backing store")
-        prop: backingstore
+        prop: backingstores
         flexGrow: 3
         sortable: false
       - label: _("Initiator address")
