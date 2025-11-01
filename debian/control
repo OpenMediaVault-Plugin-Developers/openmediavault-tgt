@@ -9,7 +9,7 @@ Standards-Version: 4.7.2
 Package: openmediavault-tgt
 Architecture: all
 Depends: tgt,
-         openmediavault (>= 7),
+         openmediavault (>= 8),
          openmediavault-sharerootfs,
          ${misc:Depends}
 Description: OpenMediaVault tgt plugin
