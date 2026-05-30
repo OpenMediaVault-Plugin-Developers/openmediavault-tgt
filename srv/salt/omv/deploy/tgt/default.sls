@@ -31,7 +31,7 @@ configure_tgt:
         config: {{ config | json }}
     - user: root
     - group: root
-    - mode: 644
+    - mode: '0644'
 
 remove_target_conf_files:
   module.run:
@@ -52,7 +52,7 @@ configure_tgt_target_{{ target.uuid }}:
     - template: jinja
     - user: root
     - group: root
-    - mode: 644
+    - mode: '0644'
 
 {% endfor %}
 
