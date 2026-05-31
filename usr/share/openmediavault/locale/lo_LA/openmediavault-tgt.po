@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the openmediavault-tgt package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# BoneNI, 2026
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-tgt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-06 18:42-0600\n"
+"POT-Creation-Date: 2026-05-31 01:29+0000\n"
 "PO-Revision-Date: 2024-11-06 14:35+0000\n"
+"Last-Translator: BoneNI, 2026\n"
 "Language-Team: Lao (Laos) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/lo_LA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,86 +22,91 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Backing store"
-msgstr ""
+msgstr "ແຫຼ່ງເກັບຂໍ້ມູນ"
 
 msgid "Create"
-msgstr ""
+msgstr "ສ້າງ"
 
 msgid "Created image."
-msgstr ""
+msgstr "ສ້າງອິເມຈແລ້ວ."
 
 msgid "Created target."
-msgstr ""
+msgstr "ສ້າງເປົ້າໝາຍແລ້ວ."
 
 msgid "Edit"
-msgstr ""
+msgstr "ແກ້ໄຂ"
 
 msgid "Edit target."
-msgstr ""
+msgstr "ແກ້ໄຂເປົ້າໝາຍ."
 
 msgid "Enable"
-msgstr ""
+msgstr "ເປີດໃຊ້ງານ"
 
 msgid "Enabled"
-msgstr ""
+msgstr "ເປີດໃຊ້ງານແລ້ວ"
 
 msgid "Enter new size in gigabytes."
-msgstr ""
+msgstr "ປ້ອນຂະໜາດໃໝ່ເປັນກິກາໄບ (GB)."
 
 msgid "Extra options"
-msgstr ""
+msgstr "ຕົວເລືອກເພີ່ມເຕີມ"
 
 msgid "Grow"
-msgstr ""
+msgstr "ຂະຫຍາຍ"
 
 msgid "IQN"
-msgstr ""
+msgstr "IQN"
 
 msgid "Image size"
-msgstr ""
+msgstr "ຂະໜາດອິເມຈ"
 
 msgid "Image size in gigabytes"
-msgstr ""
+msgstr "ຂະໜາດອິເມຈເປັນກິກາໄບ"
 
 msgid "Images"
-msgstr ""
+msgstr "ອິເມຈ"
 
 msgid "Initiator address"
-msgstr ""
+msgstr "ທີ່ຢູ່ຕົວເລີ່ມຕົ້ນ (Initiator)"
 
 msgid ""
 "Multiple addresses can be entered with a space between each entry.<br "
 "/>Hostname or IP address can be used.<br />Field can be left blank to allow "
 "any to access."
 msgstr ""
+"ສາມາດປ້ອນໄດ້ຫຼາຍທີ່ຢູ່ໂດຍການຍະຫວ່າງລະຫວ່າງແຕ່ລະລາຍການ.<br />ສາມາດໃຊ້ຊື່ໂຮສ "
+"(Hostname) ຫຼື ທີ່ຢູ່ IP ໄດ້.<br "
+"/>ສາມາດປະວ່າງໄວ້ເພື່ອອະນຸຍາດໃຫ້ທຸກຄົນເຂົ້າເຖິງໄດ້."
 
 msgid ""
 "Multiple backing stores can be entered with a comma between each entry."
-msgstr ""
+msgstr "ສາມາດປ້ອນໄດ້ຫຼາຍແຫຼ່ງເກັບຂໍ້ມູນໂດຍໃຊ້ໝາຍຈຸດຂັ້ນລະຫວ່າງແຕ່ລະລາຍການ."
 
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
 msgid "Only lowercase alphanumeric (a-z), dash (-), and dot (.) allowed!"
 msgstr ""
+"ອະນຸຍາດໃຫ້ໃຊ້ສະເພາະຕົວອັກສອນພາສາອັງກິດພິມນ້ອຍ (a-z), ເຄື່ອງໝາຍຂີດກາງ (-), "
+"ແລະ ຈຸດ (.) ເທົ່ານັ້ນ!"
 
 msgid "Path"
-msgstr ""
+msgstr "ເສັ້ນທາງ"
 
 msgid "Settings"
-msgstr ""
+msgstr "ການຕັ້ງຄ່າ"
 
 msgid "Size"
-msgstr ""
+msgstr "ຂະໜາດ"
 
 msgid "Targets"
-msgstr ""
+msgstr "ເປົ້າໝາຍ (Targets)"
 
 msgid "Tgt"
-msgstr ""
+msgstr "Tgt"
 
 msgid "iqn not set"
-msgstr ""
+msgstr "ຍັງບໍ່ໄດ້ກຳນົດ iqn"
 
 msgid "tgt"
-msgstr ""
+msgstr "tgt"
